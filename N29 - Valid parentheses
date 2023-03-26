@@ -1,0 +1,43 @@
+package test;
+import java.util.*;
+
+public class TestCode{
+	
+	public static boolean checkBracket(int currCharNo, Stack<Integer> myStack) {
+		if(myStack.empty() == true) {
+			return false;
+		}
+		int poppedNum = (int) myStack.pop();
+		if((currCharNo == 41 && poppedNum != 40) || (currCharNo == 93 && poppedNum != 91) || (currCharNo == 125 && poppedNum != 123)) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	public static boolean validString(String str) {
+		Stack<Integer> myStack = new Stack<>();
+		int n = str.length();
+		for(int i=0; i<n; i++) {
+			int currCharNo = (int)str.charAt(i);
+			if(currCharNo == 40 || currCharNo == 91 || currCharNo == 123) {
+				myStack.push(currCharNo);
+			}
+			else {
+				if(checkBracket(currCharNo, myStack) == false) {
+					return false;
+				}
+			}
+		}
+		if(myStack.empty() == true)
+			return true;
+		else
+			return false;
+	}
+	
+	public static void main(String args[]) {
+		System.out.println(validString("(){}"));
+	}
+	
+}
