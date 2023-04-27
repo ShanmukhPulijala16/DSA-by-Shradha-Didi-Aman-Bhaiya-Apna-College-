@@ -27,3 +27,23 @@ public class TestCode1 {
 	}
 	
 }
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// This code is written in GFG Platform
+
+class Solution {
+    public boolean isPossible(long a[], long b[], int n, long k) {
+        Arrays.sort(a);
+    	Integer c[] = new Integer[n];
+    	Arrays.sort(b);
+    	for(int i=0; i<n; i++) {
+    		c[i] = (int)b[n-i-1];
+    	}
+    	
+    	for(int i=0; i<n; i++) {
+    		if(a[i]+c[i] < k)
+    			return false;
+    	}
+    	return true;
+    }
+}
