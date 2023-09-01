@@ -1,57 +1,29 @@
-// This code did not work for all test cases You still have to improve it.
+// LeetCode Problem
 
-package test;
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        StringBuilder result = new StringBuilder("");
+        
+        //Sort the Array
+        Arrays.sort(strs);
 
-public class TestCode{
-	
-    public static String longestCommonPrefix(String[] strs) {
-    	int n = strs.length;
-    	if(strs[0].length() == 0) {
-    		return "";
-    	}
-    	int arr[] = new int[26];
-        for(int i=0; i<n; i++) {
-        	for(int j=0; j<strs[i].length(); j++) {
-        		int currCharNo = strs[i].charAt(j)-97;
-        		int count = arr[currCharNo];
-        		arr[currCharNo] = ++count;
-        		System.out.println(currCharNo + " --- " + count);
-        	}
-        	System.out.println();
-        }
-        int temp = 0;
-        for(int i=0; i<strs[0].length(); i++) {
-        	int currCharNo = strs[0].charAt(i)-97;
-        	System.out.println(currCharNo);
-        	if(arr[currCharNo] != strs.length) {
-        		temp = i-1;
-        		break;
-        	}
-        	if(i == strs[0].length()-1) {
-        		temp = i;
-        	}
-        }
-        if(temp == -1)
-        	return "";
-        
-        System.out.println("temp is " + temp );
-        StringBuilder sb = new StringBuilder("");
-        for(int i=0; i<=temp; i++) {
-        	sb.append(strs[0].charAt(i));
+        char first[] = strs[0].toCharArray();
+        char last[] = strs[strs.length-1].toCharArray();
+
+        int m;
+        if(first.length < last.length){
+            m = first.length;
+        } else{
+            m = last.length;
         }
         
-        String str = sb.toString();
-        System.out.println(str);
-        
-        return str;
-        
+        for(int i=0; i<m; i++){
+            if(first[i] != last[i]){
+                break;
+            }
+            result.append(first[i]);
+        }
+
+        return result.toString();
     }
-	
-	public static void main(String args[]) {
-		
-		String strs[] = {"aa", "aa"};
-		longestCommonPrefix(strs);
-	
-	}
-	
 }
